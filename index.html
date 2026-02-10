@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>IP Check B</title>
+</head>
+<body>
+  <h2>送信元IP（Site B）</h2>
+  <pre id="info">取得中...</pre>
+
+  <script>
+    fetch("https://ipinfo.io/json")
+      .then(r => r.json())
+      .then(d => {
+        document.getElementById("info").textContent =
+          "IP: " + d.ip + "\n" +
+          "ASN: " + (d.org || "") + "\n" +
+          "国: " + d.country;
+      })
+      .catch(() => document.getElementById("info").textContent = "取得失敗");
+  </script>
+</body>
+</html>
